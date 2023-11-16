@@ -24,6 +24,7 @@
             tools:text="Mary Odhiambo"
         />
     <LinearLayout
+        android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -65,12 +66,38 @@
             />
     </LinearLayout>
 
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+      <com.google.android.material.button.MaterialButton
+          android:layout_weight="1"
+          android:id="@+id/screener"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_margin="5dp"
+          android:text="@string/do_screening" />
+
+      <com.google.android.material.button.MaterialButton
+          android:layout_weight="1"
+          android:id="@+id/captureVitals"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_margin="5dp"
+          android:text="@string/capture_vitals" />
+
+    </LinearLayout>
+
     <com.google.android.material.button.MaterialButton
-            android:id="@+id/screener"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:text="@string/complete_survey"
-        />
+        android:layout_weight="1"
+        android:id="@+id/referral"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:text="@string/do_referral" />
+
   </LinearLayout>
 </FrameLayout>

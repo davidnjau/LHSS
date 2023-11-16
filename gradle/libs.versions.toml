@@ -2,9 +2,15 @@
 
 [versions]
 glide = "4.14.2"
+appcompat = "1.6.1"
+material = "1.10.0"
+constraintlayout = "2.1.4"
 
 [libraries]
 glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
+appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
 
 [bundles]
 

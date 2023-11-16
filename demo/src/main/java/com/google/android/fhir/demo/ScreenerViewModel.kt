@@ -17,6 +17,7 @@
 package com.google.android.fhir.demo
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
@@ -88,9 +89,12 @@ class ScreenerViewModel(application: Application, private val state: SavedStateH
       when (val resource = it.resource) {
         is Observation -> {
           if (resource.hasCode()) {
-            resource.id = generateUuid()
+            val observationId = generateUuid()
+            resource.id = observationId
             resource.subject = subjectReference
             resource.encounter = encounterReference
+            Log.e("*******ObsId", observationId)
+
             saveResourceToDatabase(resource)
           }
         }
@@ -105,6 +109,8 @@ class ScreenerViewModel(application: Application, private val state: SavedStateH
         is Encounter -> {
           resource.subject = subjectReference
           resource.id = encounterId
+          Log.e("*******EncId", encounterId)
+
           saveResourceToDatabase(resource)
         }
       }

@@ -12,6 +12,7 @@ buildscript {
     classpath(Plugins.kotlinGradlePlugin)
     classpath(Plugins.navSafeArgsGradlePlugin)
     classpath(Plugins.rulerGradlePlugin)
+      classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.0")
   }
 }
 

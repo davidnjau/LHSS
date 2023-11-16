@@ -29,12 +29,14 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.navArgs
 import com.google.android.fhir.datacapture.QuestionnaireFragment
+import com.google.android.fhir.demo.data.FormatterClass
 
 /** A fragment class to show screener questionnaire screen. */
 class ScreenerFragment : Fragment(R.layout.screener_encounter_fragment) {
 
   private val viewModel: ScreenerViewModel by viewModels()
   private val args: ScreenerFragmentArgs by navArgs()
+  private val formatterClass = FormatterClass()
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
@@ -71,7 +73,9 @@ class ScreenerFragment : Fragment(R.layout.screener_encounter_fragment) {
   }
 
   private fun updateArguments() {
-    requireArguments().putString(QUESTIONNAIRE_FILE_PATH_KEY, "screener-questionnaire.json")
+
+    val questionnaire = formatterClass.getSharedPref("questionnaireJson", requireContext())
+    requireArguments().putString(QUESTIONNAIRE_FILE_PATH_KEY, questionnaire)
   }
 
   private fun addQuestionnaireFragment() {

@@ -26,9 +26,7 @@
   <!-- For display observations in brief, for a patient -->
   <string name="observation_brief_text">%1$s: %2$s\nEffective: %3$s</string>
   <string name="query_hint_patient_search">Find by Patient Name</string>
-  <string
-        name="cancel_questionnaire_message"
-    >Are you sure you want to discard the answers?</string>
+  <string name="cancel_questionnaire_message">Are you sure you want to discard the answers?</string>
   <string name="patient_id">Id</string>
   <string name="patient_name">Name</string>
   <string name="patient_gender">Gender</string>
@@ -51,13 +49,14 @@
   <string name="inputs_missing">Inputs are missing.</string>
   <string name="resources_saved">Resources are saved.</string>
   <string name="response_received">questionnaire response is received.</string>
-  <string name="html_text">Current status: <font
-            color="#ddd"
-        >UNKNOWN</font></string>
+  <string name="html_text">Current status: <font color="#ddd">UNKNOWN</font></string>
   <string name="header_observation">Observations</string>
   <string name="header_conditions">Conditions</string>
   <string name="message_no_datetime">No effective DateTime</string>
   <string name="complete_survey">Complete Survey</string>
+  <string name="do_screening">Do Screening</string>
+  <string name="capture_vitals">Capture Vitals</string>
+  <string name="do_referral">Do Referral</string>
   <string name="risk_status">Current status: </string>
   <string name="unknown">UNKNOWN</string>
   <string name="none">none</string>

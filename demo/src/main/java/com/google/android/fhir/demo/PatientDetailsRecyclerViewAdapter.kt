@@ -26,6 +26,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.fhir.demo.PatientDetailsRecyclerViewAdapter.Companion.allCornersRounded
+import com.google.android.fhir.demo.data.FormatterClass
 import com.google.android.fhir.demo.databinding.PatientDetailsCardViewBinding
 import com.google.android.fhir.demo.databinding.PatientDetailsHeaderBinding
 import com.google.android.fhir.demo.databinding.PatientListItemViewBinding
@@ -33,7 +34,11 @@ import com.google.android.material.shape.MaterialShapeDrawable
 import com.google.android.material.shape.RoundedCornerTreatment
 import com.google.android.material.shape.ShapeAppearanceModel
 
-class PatientDetailsRecyclerViewAdapter(private val onScreenerClick: () -> Unit) :
+class PatientDetailsRecyclerViewAdapter(
+  private val onScreenerClick: () -> Unit,
+  private val onVitalsClick: () -> Unit,
+  private val onReferralClick: () -> Unit,
+) :
   ListAdapter<PatientDetailData, PatientDetailItemViewHolder>(PatientDetailDiffUtil()) {
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PatientDetailItemViewHolder {
     return when (ViewTypes.from(viewType)) {
@@ -44,7 +49,7 @@ class PatientDetailsRecyclerViewAdapter(private val onScreenerClick: () -> Unit)
       ViewTypes.PATIENT ->
         PatientOverviewItemViewHolder(
           PatientDetailsHeaderBinding.inflate(LayoutInflater.from(parent.context), parent, false),
-          onScreenerClick,
+          onScreenerClick,onVitalsClick,onReferralClick
         )
       ViewTypes.PATIENT_PROPERTY ->
         PatientPropertyItemViewHolder(
@@ -154,9 +159,14 @@ abstract class PatientDetailItemViewHolder(v: View) : RecyclerView.ViewHolder(v)
 class PatientOverviewItemViewHolder(
   private val binding: PatientDetailsHeaderBinding,
   val onScreenerClick: () -> Unit,
+  val onVitalsClick: () -> Unit,
+  val onReferralClick: () -> Unit,
 ) : PatientDetailItemViewHolder(binding.root) {
   override fun bind(data: PatientDetailData) {
     binding.screener.setOnClickListener { onScreenerClick() }
+    binding.captureVitals.setOnClickListener {onVitalsClick()}
+    binding.referral.setOnClickListener {onReferralClick()}
+
     (data as PatientDetailOverview).let { binding.title.text = it.patient.name }
     data.patient.riskItem?.let {
       binding.patientContainer.setBackgroundColor(it.patientCardColor)

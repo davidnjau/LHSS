@@ -9,23 +9,6 @@
   ],
   "extension": [
     {
-      "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-launchContext",
-      "extension": [
-        {
-          "url": "name",
-          "valueCoding": {
-            "system": "http://hl7.org/fhir/uv/sdc/CodeSystem/launchContext",
-            "code": "client",
-            "display": "Client as a Patient"
-          }
-        },
-        {
-          "url": "type",
-          "valueCode": "Patient"
-        }
-      ]
-    },
-    {
       "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-itemExtractionContext",
       "valueExpression": {
         "language": "application/x-fhir-query",
@@ -68,7 +51,7 @@
                   "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression",
                   "valueExpression": {
                     "language": "text/fhirpath",
-                    "expression": "%client.name.given",
+                    "expression": "Patient.name.given",
                     "name": "patientName"
                   }
                 }
@@ -102,7 +85,7 @@
                   "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression",
                   "valueExpression": {
                     "language": "text/fhirpath",
-                    "expression": "%client.name.family",
+                    "expression": "Patient.name.family",
                     "name": "patientFamily"
                   }
                 }
@@ -133,13 +116,12 @@
           ]
         },
         {
-
           "extension": [
             {
               "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression",
               "valueExpression": {
                 "language": "text/fhirpath",
-                "expression": "%client.birthDate",
+                "expression": "Patient.birthDate",
                 "name": "patientBirthDate"
               }
             }
@@ -178,7 +160,7 @@
               "valueExpression": {
                 "system": "http://hl7.org/fhir/administrative-gender",
                 "language": "text/fhirpath",
-                "expression": "%client.gender",
+                "expression": "Patient.gender",
                 "name": "patientGender"
               }
             },
@@ -209,7 +191,8 @@
                   {
                     "language": "sw",
                     "value": "Mwanamke"
-                  }]
+                  }
+                ]
               }
             },
             {
@@ -221,7 +204,8 @@
                   {
                     "language": "sw",
                     "value": "Mwanaume"
-                  }]
+                  }
+                ]
               }
             },
             {
@@ -233,7 +217,8 @@
                   {
                     "language": "sw",
                     "value": "Nyingine"
-                  }]
+                  }
+                ]
               }
             },
             {
@@ -245,7 +230,8 @@
                   {
                     "language": "sw",
                     "value": "Haijulikani"
-                  }]
+                  }
+                ]
               }
             }
           ]
@@ -278,7 +264,7 @@
                   "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression",
                   "valueExpression": {
                     "language": "text/fhirpath",
-                    "expression": "%client.telecom.value",
+                    "expression": "Patient.telecom.value",
                     "name": "patientTelecom"
                   }
                 }
@@ -319,7 +305,7 @@
                   "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression",
                   "valueExpression": {
                     "language": "text/fhirpath",
-                    "expression": "%client.address.city",
+                    "expression": "Patient.address.city",
                     "name": "patientCity"
                   }
                 }
@@ -353,7 +339,7 @@
                   "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression",
                   "valueExpression": {
                     "language": "text/fhirpath",
-                    "expression": "%client.address.country",
+                    "expression": "Patient.address.country",
                     "name": "patientCity"
                   }
                 }
@@ -382,39 +368,6 @@
               }
             }
           ]
-        },
-        {
-          "extension": [
-          {
-            "url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-initialExpression",
-            "valueExpression": {
-              "language": "text/fhirpath",
-              "expression": "%client.active",
-              "name": "patientActive"
-            }
-          }
-        ],
-          "linkId": "PR-active",
-          "definition": "http://hl7.org/fhir/StructureDefinition/Patient#Patient.active",
-          "type": "boolean",
-          "text": "Is Active?",
-          "_text": {
-            "extension": [
-              {
-                "extension": [
-                  {
-                    "url": "lang",
-                    "valueCode": "sw"
-                  },
-                  {
-                    "url": "content",
-                    "valueString": "Inatumika?"
-                  }
-                ],
-                "url": "http://hl7.org/fhir/StructureDefinition/translation"
-              }
-            ]
-          }
         }
       ]
     }

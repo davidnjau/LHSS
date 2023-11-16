@@ -5,6 +5,7 @@ plugins {
   id(Plugins.BuildPlugins.kotlinAndroid)
   id(Plugins.BuildPlugins.kotlinKapt)
   id(Plugins.BuildPlugins.navSafeArgs)
+    id("org.jetbrains.kotlin.android")
 }
 
 configureRuler()
@@ -43,7 +44,10 @@ android {
 configurations { all { forceGuava() } }
 
 dependencies {
-  androidTestImplementation(Dependencies.AndroidxTest.extJunit)
+  implementation(libs.appcompat)
+    implementation(libs.material)
+    implementation(libs.constraintlayout)
+    androidTestImplementation(Dependencies.AndroidxTest.extJunit)
   androidTestImplementation(Dependencies.Espresso.espressoCore)
 
   coreLibraryDesugaring(Dependencies.desugarJdkLibs)

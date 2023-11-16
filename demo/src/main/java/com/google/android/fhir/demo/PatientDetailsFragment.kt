@@ -17,6 +17,7 @@
 package com.google.android.fhir.demo
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuInflater
@@ -30,6 +31,7 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.android.fhir.FhirEngine
+import com.google.android.fhir.demo.data.FormatterClass
 import com.google.android.fhir.demo.databinding.PatientDetailBinding
 
 /**
@@ -45,6 +47,7 @@ class PatientDetailsFragment : Fragment() {
     get() = _binding!!
 
   var editMenuItem: MenuItem? = null
+  private val formatterClass = FormatterClass()
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -69,7 +72,7 @@ class PatientDetailsFragment : Fragment() {
           PatientDetailsViewModelFactory(requireActivity().application, fhirEngine, args.patientId),
         )
         .get(PatientDetailsViewModel::class.java)
-    val adapter = PatientDetailsRecyclerViewAdapter(::onAddScreenerClick)
+    val adapter = PatientDetailsRecyclerViewAdapter(::onAddScreenerClick, ::onVitalsClick, ::onReferralClick )
     binding.recycler.adapter = adapter
     (requireActivity() as AppCompatActivity).supportActionBar?.apply {
       title = "Patient Card"
@@ -81,17 +84,60 @@ class PatientDetailsFragment : Fragment() {
         editMenuItem?.isEnabled = true
       }
     }
+
+
+
     patientDetailsViewModel.getPatientDetailData()
     (activity as MainActivity).setDrawerEnabled(false)
+
+    Log.e("---------", args.patientId)
+
   }
 
   private fun onAddScreenerClick() {
+
+    formatterClass.saveSharedPref(
+      "questionnaireJson",
+      "screening.json",
+      requireContext())
+
     findNavController()
       .navigate(
         PatientDetailsFragmentDirections.actionPatientDetailsToScreenEncounterFragment(
           args.patientId,
         ),
       )
+
+  }
+  private fun onVitalsClick() {
+
+    formatterClass.saveSharedPref(
+      "questionnaireJson",
+      "capture-vitals.json",
+      requireContext())
+
+    findNavController()
+      .navigate(
+        PatientDetailsFragmentDirections.actionPatientDetailsToScreenEncounterFragment(
+          args.patientId,
+        ),
+      )
+
+  }
+  private fun onReferralClick() {
+
+    formatterClass.saveSharedPref(
+      "questionnaireJson",
+      "referral.json",
+      requireContext())
+
+    findNavController()
+      .navigate(
+        PatientDetailsFragmentDirections.actionPatientDetailsToScreenEncounterFragment(
+          args.patientId,
+        ),
+      )
+
   }
 
   override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
